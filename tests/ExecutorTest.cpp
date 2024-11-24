@@ -25,7 +25,7 @@ TEST(ExecutorTest, should_return_default_pose_when_without_init_and_command)
 {
     // given
     std::unique_ptr<Executor> executor(Executor::NewExecutor());
-    // when		测试遵循了 Arrange-Act-Assert (AAA) 模式，这是提高可读性和维护性的好习惯
+    // when
 
     // then
     const Pose target({0, 0, 'N'});
