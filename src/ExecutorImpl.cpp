@@ -12,6 +12,71 @@ namespace adas
     }
     void ExecutorImpl::Execute(const std::string& commands) noexcept
     {
+        for (const auto cmd : commands){
+            switch (cmd)
+            {
+            case 'M':
+                switch (pose.heading)
+                {
+                case 'N':
+                    pose.y++;
+                    break;
+                case 'S':
+                    pose.y--;
+                    break;
+                case 'E':
+                    pose.x++;
+                    break;
+                case 'W':
+                    pose.x--;
+                    break;
+                default:
+                    break;
+                }
+                break;
+            case 'L':
+                switch (pose.heading)
+                {
+                case 'N':
+                    pose.heading = 'W';
+                    break;
+                case 'S':
+                    pose.heading = 'E';
+                    break;
+                case 'E':
+                    pose.heading = 'N';
+                    break;
+                case 'W':
+                    pose.heading = 'S';
+                    break;
+                default:
+                    break;
+                }
+                break;
+            case 'R':
+                switch (pose.heading)
+                {
+                case 'N':
+                    pose.heading = 'E';
+                    break;
+                case 'S':
+                    pose.heading = 'W';
+                    break;
+                case 'E':
+                    pose.heading = 'S';
+                    break;
+                case 'W':
+                    pose.heading = 'N';
+                    break;
+                default:
+                    break;
+                }
+                break;
+            default:
+                break;
+            }
+        }
+
     }
     Pose ExecutorImpl::Query() const noexcept
     {
