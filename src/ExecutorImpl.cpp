@@ -29,6 +29,10 @@ namespace adas
                 cmder=std::make_unique<TurnRightCommand>();
                 break;
             }
+            case 'F':{
+                cmder=std::make_unique<FastCommand>();
+                break;
+            }
             default:
                 break;
             }
@@ -93,4 +97,15 @@ namespace adas
                     break;
                 }
     }
+
+    void ExecutorImpl::Fast() noexcept
+    {
+        fast = !fast;
+    }
+
+    bool ExecutorImpl::isFast() const noexcept
+    {
+        return fast;
+    }
+
 }

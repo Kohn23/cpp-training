@@ -16,9 +16,14 @@ public:
 
 private:
     Pose pose;
+    bool fast{false};
+
+private:
     void Move(void) noexcept;
     void TurnLeft(void) noexcept;
     void TurnRight(void) noexcept;
+    void Fast(void) noexcept;
+    bool isFast(void) const noexcept;
 
 private:
     class ICommand
@@ -34,6 +39,10 @@ private:
     public:
         void DoOperate(ExecutorImpl& executor) const noexcept override
         {
+            if(executor.isFast())
+            {
+                executor.Move();
+            }
             executor.Move();
         }
     };
@@ -51,6 +60,14 @@ private:
         void DoOperate(ExecutorImpl& executor) const noexcept override
         {
             executor.TurnRight();
+        }
+    };
+    class FastCommand final: public ICommand
+    {
+    public:
+        void DoOperate(ExecutorImpl& executor) const noexcept override
+        {
+            executor.Fast();
         }
     };
 };  // namespace adas
