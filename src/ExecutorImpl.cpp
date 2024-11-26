@@ -26,9 +26,11 @@ namespace adas
                 cmder->DoOperate(*this);
                 break;
             }
-            case 'R':
-                TurnRight();
+            case 'R':{
+                std::unique_ptr<TurnRightCommand> cmder = std::make_unique<TurnRightCommand>();
+                cmder->DoOperate(*this);
                 break;
+            }
             default:
                 break;
             }
