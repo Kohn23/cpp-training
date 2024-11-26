@@ -1,4 +1,5 @@
 #include "ExecutorImpl.hpp" 
+#include <memory>
 namespace adas
 {
     // 这里实现了抽象类的构造函数，返回的是一个子类
@@ -15,9 +16,11 @@ namespace adas
         for (const auto cmd : commands){
             switch (cmd)
             {
-            case 'M':
-                Move();
+            case 'M':{
+                std::unique_ptr<MoveCommand> cmder = std::make_unique<MoveCommand>();
+                cmder->DoOperate(*this);
                 break;
+            }  
             case 'L':
                 TurnLeft();
                 break;
