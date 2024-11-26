@@ -19,23 +19,7 @@ namespace adas
                 Move();
                 break;
             case 'L':
-                switch (pose.heading)
-                {
-                case 'N':
-                    pose.heading = 'W';
-                    break;
-                case 'S':
-                    pose.heading = 'E';
-                    break;
-                case 'E':
-                    pose.heading = 'N';
-                    break;
-                case 'W':
-                    pose.heading = 'S';
-                    break;
-                default:
-                    break;
-                }
+                TurnLeft();
                 break;
             case 'R':
                 switch (pose.heading)
@@ -77,5 +61,25 @@ namespace adas
         } else if (pose.heading == 'S') {
             --pose.y;
         }
+    }
+    void ExecutorImpl::TurnLeft() noexcept
+    {
+        switch (pose.heading)
+                {
+                case 'N':
+                    pose.heading = 'W';
+                    break;
+                case 'S':
+                    pose.heading = 'E';
+                    break;
+                case 'E':
+                    pose.heading = 'N';
+                    break;
+                case 'W':
+                    pose.heading = 'S';
+                    break;
+                default:
+                    break;
+                }
     }
 }
