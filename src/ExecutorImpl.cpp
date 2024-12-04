@@ -13,6 +13,7 @@ namespace adas
 
     void ExecutorImpl::Execute(const std::string& commands) noexcept
     {
+        // 表驱动简化代码
         std::unordered_map<char, std::unique_ptr<ICommand>> cmderMap;
         cmderMap.emplace('M', std::make_unique<MoveCommand>());
         cmderMap.emplace('L', std::make_unique<TurnLeftCommand>());
