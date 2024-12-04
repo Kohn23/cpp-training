@@ -1,5 +1,7 @@
 #pragma once 
 #include "Executor.hpp"
+#include "PoseHandler.hpp"
+#include "Command.hpp"
 namespace adas
 {
 class ExecutorImpl final : public Executor
@@ -15,69 +17,8 @@ public:
     Pose Query(void) const noexcept override;
 
 private:
-    Pose pose;
-    bool fast{false};
+    PoseHandler poseHandler;
 
-private:
-    void Move(void) noexcept;
-    void TurnLeft(void) noexcept;
-    void TurnRight(void) noexcept;
-    void Fast(void) noexcept;
-    bool isFast(void) const noexcept;
-
-private:
-    class ICommand
-    {
-    public:
-        virtual ~ICommand() = default;
-        virtual void DoOperate(ExecutorImpl& executor) const noexcept = 0;
-    };
-
-private:
-    class MoveCommand final: public ICommand
-    {
-    public:
-        void DoOperate(ExecutorImpl& executor) const noexcept override
-        {
-            if(executor.isFast())
-            {
-                executor.Move();
-            }
-            executor.Move();
-        }
-    };
-    class TurnLeftCommand final: public ICommand
-    {
-    public:
-        void DoOperate(ExecutorImpl& executor) const noexcept override
-        {
-            if(executor.isFast())
-            {
-                executor.Move();
-            }
-            executor.TurnLeft();
-        }
-    };
-    class TurnRightCommand final: public ICommand
-    {
-    public:
-        void DoOperate(ExecutorImpl& executor) const noexcept override
-        {
-            if(executor.isFast())
-            {
-                executor.Move();
-            }
-            executor.TurnRight();
-        }
-    };
-    class FastCommand final: public ICommand
-    {
-    public:
-        void DoOperate(ExecutorImpl& executor) const noexcept override
-        {
-            executor.Fast();
-        }
-    };
 };  // namespace adas
 }
 
