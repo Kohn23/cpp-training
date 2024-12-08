@@ -14,48 +14,48 @@ namespace adas
 class MoveCommand final
 {
 public:
-    const std::function<void(PoseHandler& poseHandler)> operate = [](PoseHandler& poseHandler) noexcept 
+    void operator()(PoseHandler& poseHandler) const noexcept
     {
         if (poseHandler.IsFast())
-        {  
+        {
             poseHandler.Move();
         }
         poseHandler.Move();
-    };
+    }
 };
 
 class TurnLeftCommand final
 {
 public:
-    const std::function<void(PoseHandler& poseHandler)> operate = [](PoseHandler& poseHandler) noexcept
+    void operator()(PoseHandler& poseHandler) const noexcept
     {
         if (poseHandler.IsFast())
         {
             poseHandler.Move();
         }
         poseHandler.TurnLeft();
-    };
+    }
 };
 
 class TurnRightCommand final
 {
 public:
-    const std::function<void(PoseHandler& poseHandler)> operate = [](PoseHandler& poseHandler) noexcept
+    void operator()(PoseHandler& poseHandler) const noexcept
     {
         if (poseHandler.IsFast())
         {
             poseHandler.Move();
         }
         poseHandler.TurnRight();
-    };
+    }
 };
 
 class FastCommand final
 {
 public:
-    const std::function<void(PoseHandler& poseHandler)> operate = [](PoseHandler& poseHandler) noexcept
+    void operator()(PoseHandler& poseHandler) const noexcept
     {
         poseHandler.Fast();
-    };
+    }
 };
 }
