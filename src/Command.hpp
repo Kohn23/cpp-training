@@ -1,6 +1,7 @@
 #pragma once
-#include"PoseHandler.hpp"
-#include<functional>
+#include <functional>
+
+#include "PoseHandler.hpp"
 
 namespace adas
 {
@@ -16,11 +17,19 @@ class MoveCommand final
 public:
     void operator()(PoseHandler& poseHandler) const noexcept
     {
-        if (poseHandler.IsFast())
-        {
-            poseHandler.Move();
+        if (poseHandler.IsFast()) {
+            if (poseHandler.IsBackward()) {
+                poseHandler.Backward();
+            } else {
+                poseHandler.Forward();
+            }
         }
-        poseHandler.Move();
+
+        if (poseHandler.IsBackward()) {
+            poseHandler.Backward();
+        } else {
+            poseHandler.Forward();
+        }
     }
 };
 
@@ -29,11 +38,19 @@ class TurnLeftCommand final
 public:
     void operator()(PoseHandler& poseHandler) const noexcept
     {
-        if (poseHandler.IsFast())
-        {
-            poseHandler.Move();
+        if (poseHandler.IsFast()) {
+            if (poseHandler.IsBackward()) {
+                poseHandler.Backward();
+            } else {
+                poseHandler.Forward();
+            }
         }
-        poseHandler.TurnLeft();
+
+        if (poseHandler.IsBackward()) {
+            poseHandler.TurnRight();
+        } else {
+            poseHandler.TurnLeft();
+        }
     }
 };
 
@@ -42,11 +59,18 @@ class TurnRightCommand final
 public:
     void operator()(PoseHandler& poseHandler) const noexcept
     {
-        if (poseHandler.IsFast())
-        {
-            poseHandler.Move();
+        if (poseHandler.IsFast()) {
+            if (poseHandler.IsBackward()) {
+                poseHandler.Backward();
+            } else {
+                poseHandler.Forward();
+            }
         }
-        poseHandler.TurnRight();
+        if (poseHandler.IsBackward()) {
+            poseHandler.TurnLeft();
+        } else {
+            poseHandler.TurnRight();
+        }
     }
 };
 
@@ -58,4 +82,14 @@ public:
         poseHandler.Fast();
     }
 };
-}
+
+class BackCommand final
+{
+public:
+    void operator()(PoseHandler& poseHandler) const noexcept
+    {
+        poseHandler.Back();
+    }
+};
+
+}  // namespace adas
