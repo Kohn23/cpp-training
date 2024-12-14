@@ -1,5 +1,5 @@
-#pragma once 
-#include <string> 
+#pragma once
+#include <string>
 namespace adas
 {
     struct Pose {
@@ -7,6 +7,7 @@ namespace adas
         int y;
         char heading;
     };
+
     class Executor
     {
     public:

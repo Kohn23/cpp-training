@@ -21,7 +21,7 @@ public:
     CmderList GetCmders(const std::string& commands) const noexcept;
 
 private:
-    const std::unordered_map<char, std::function<void(PoseHandler& poseHandler)>> cmderMap{
+    const std::unordered_map<char, Cmder> cmderMap{
         {'M', MoveCommand()}, {'L', TurnLeftCommand()}, {'R', TurnRightCommand()},
         {'F', FastCommand()}, {'B', BackCommand()},
     };

@@ -1,7 +1,10 @@
-#pragma once 
+#pragma once
+
 #include "Executor.hpp"
 #include "PoseHandler.hpp"
-#include "Command.hpp"
+#include "Singleton.hpp"
+#include "CmderFactory.hpp"
+
 namespace adas
 {
 class ExecutorImpl final : public Executor
@@ -18,7 +21,6 @@ public:
 
 private:
     PoseHandler poseHandler;
-
-};  // namespace adas
-}
-
+    CmderFactory* cmderFactory = Singleton<CmderFactory>::Instance();
+};
+}  // namespace adas
