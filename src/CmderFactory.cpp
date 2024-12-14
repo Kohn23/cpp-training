@@ -1,7 +1,7 @@
 #include "CmderFactory.hpp"
 namespace adas
 {
-CmderList CmderFactory::GetCmders(const std::string& commands) const noexcept
+CmderList CarFactory::GetCmders(const std::string& commands) const noexcept
 {
     CmderList cmders;
     for (const auto cmd : commands) {

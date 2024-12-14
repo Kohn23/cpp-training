@@ -2,93 +2,79 @@
 #include <functional>
 
 #include "PoseHandler.hpp"
+#include "ActionGroup.hpp"
 
 namespace adas
 {
-// class ICommand
-// {
-// public:
-//     virtual ~ICommand() = default;
-//     virtual void DoOperate(PoseHandler& poseHandler) const noexcept = 0;
-// };
-
 class MoveCommand final
 {
 public:
-    void operator()(PoseHandler& poseHandler) const noexcept
+    ActionGroup operator()(PoseHandler& poseHandler) const noexcept
     {
-        if (poseHandler.IsFast()) {
-            if (poseHandler.IsBackward()) {
-                poseHandler.Backward();
-            } else {
-                poseHandler.Forward();
-            }
+        ActionGroup actionGroup;
+        const auto moveAction = poseHandler.IsBackward() ? ActionType::BACKWARD_1_STEP_ACTION : ActionType::FORWARD_1_STEP_ACTION;
+        if (poseHandler.IsFast())
+        {
+            actionGroup.PushAction(moveAction);
         }
-
-        if (poseHandler.IsBackward()) {
-            poseHandler.Backward();
-        } else {
-            poseHandler.Forward();
-        }
+        actionGroup.PushAction(moveAction);
+        return actionGroup;
     }
 };
 
 class TurnLeftCommand final
 {
 public:
-    void operator()(PoseHandler& poseHandler) const noexcept
+    ActionGroup operator()(PoseHandler& poseHandler) const noexcept
     {
-        if (poseHandler.IsFast()) {
-            if (poseHandler.IsBackward()) {
-                poseHandler.Backward();
-            } else {
-                poseHandler.Forward();
-            }
+        ActionGroup actionGroup;
+        const auto turnLeftAction = poseHandler.IsBackward()? ActionType::BACKWARD_TURNLEFT_ACTION : ActionType::TURNLEFT_ACTION;
+        const auto moveAction = poseHandler.IsBackward()? ActionType::BACKWARD_1_STEP_ACTION : ActionType::FORWARD_1_STEP_ACTION;
+        if (poseHandler.IsFast())
+        {
+            actionGroup.PushAction(moveAction);
         }
-
-        if (poseHandler.IsBackward()) {
-            poseHandler.TurnRight();
-        } else {
-            poseHandler.TurnLeft();
-        }
+        actionGroup.PushAction(turnLeftAction);
+        return actionGroup;
     }
 };
 
 class TurnRightCommand final
 {
 public:
-    void operator()(PoseHandler& poseHandler) const noexcept
+    ActionGroup operator()(PoseHandler& poseHandler) const noexcept
     {
-        if (poseHandler.IsFast()) {
-            if (poseHandler.IsBackward()) {
-                poseHandler.Backward();
-            } else {
-                poseHandler.Forward();
-            }
+        ActionGroup actionGroup;
+        const auto turnRightAction = poseHandler.IsBackward()? ActionType::BACKWARD_TURNRIGHT_ACTION : ActionType::TURNRIGHT_ACTION;
+        const auto moveAction = poseHandler.IsBackward()? ActionType::BACKWARD_1_STEP_ACTION : ActionType::FORWARD_1_STEP_ACTION;
+        if (poseHandler.IsFast())
+        {
+            actionGroup.PushAction(moveAction);
         }
-        if (poseHandler.IsBackward()) {
-            poseHandler.TurnLeft();
-        } else {
-            poseHandler.TurnRight();
-        }
+        actionGroup.PushAction(turnRightAction);
+        return actionGroup;
     }
 };
 
 class FastCommand final
 {
 public:
-    void operator()(PoseHandler& poseHandler) const noexcept
+    ActionGroup operator()(PoseHandler& poseHandler) const noexcept
     {
-        poseHandler.Fast();
+        ActionGroup actionGroup;
+        actionGroup.PushAction(ActionType::BE_FAST_ACTION);
+        return actionGroup;
     }
 };
 
 class BackCommand final
 {
 public:
-    void operator()(PoseHandler& poseHandler) const noexcept
+    ActionGroup operator()(PoseHandler& poseHandler) const noexcept
     {
-        poseHandler.Back();
+        ActionGroup actionGroup;
+        actionGroup.PushAction(ActionType::BE_BACKWARD_ACTION);
+        return actionGroup;
     }
 };
 

@@ -21,6 +21,6 @@ public:
 
 private:
     PoseHandler poseHandler;
-    CmderFactory* cmderFactory = Singleton<CmderFactory>::Instance();
+    CmderFactory* cmderFactory = Singleton<CarFactory>::Instance();
 };
 }  // namespace adas
