@@ -21,6 +21,8 @@ const Direction& Direction::GetDirection(const char heading) noexcept
     return directions[3];
 }
 
+
+
 const Point& Direction::Move() const noexcept
 {
     // ESWN

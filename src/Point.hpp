@@ -9,6 +9,7 @@ public:
     Point& operator=(const Point& rhs) noexcept;
     Point& operator+=(const Point& rhs) noexcept;
     Point& operator-=(const Point& rhs) noexcept;
+    Point operator-(const Point& rhs) const noexcept;
 public:
     int GetX(void) const noexcept;
     int GetY(void) const noexcept;

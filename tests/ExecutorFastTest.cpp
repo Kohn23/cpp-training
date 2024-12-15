@@ -11,7 +11,7 @@ TEST(ExecutorFastTest, should_return_x_plus_2_given_status_is_fast_command_is_M_
     executor->Execute("FM");
     // then
     const Pose target{2, 0, 'E'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(ExecutorFastTest, should_return_N_and_x_plus_1_given_status_is_fast_command_is_L_and_facing_is_E)
@@ -22,7 +22,7 @@ TEST(ExecutorFastTest, should_return_N_and_x_plus_1_given_status_is_fast_command
     executor->Execute("FL");
     // then
     const Pose target{1, 0, 'N'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(ExecutorFastTest, should_return_S_and_x_plus_1_given_status_is_fast_given_command_is_R_and_facing_is_E)
@@ -33,7 +33,7 @@ TEST(ExecutorFastTest, should_return_S_and_x_plus_1_given_status_is_fast_given_c
     executor->Execute("FR");
     // then
     const Pose target{1, 0, 'S'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(ExecutorFastTest, should_return_y_plus_1_given_command_is_FFM_and_facing_is_N)
@@ -44,7 +44,7 @@ TEST(ExecutorFastTest, should_return_y_plus_1_given_command_is_FFM_and_facing_is
     executor->Execute("FFM");
     // then
     const Pose target{0, 1, 'N'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 }

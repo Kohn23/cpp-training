@@ -16,7 +16,7 @@ TEST(ExecutorTest, should_return_init_pose_when_without_command)
 
     // then
     const Pose target({0, 0, 'E'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 TEST(ExecutorTest, should_return_default_pose_when_without_init_and_command)
 {
@@ -26,7 +26,7 @@ TEST(ExecutorTest, should_return_default_pose_when_without_init_and_command)
 
     // then
     const Pose target({0, 0, 'N'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 //command指令测试
@@ -38,7 +38,7 @@ TEST(ExecutorTest, should_return_x_plus_1_given_command_is_M_and_facing_is_E)
     executor->Execute("M");
     // then
     const Pose target({1, 0, 'E'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(ExecutorTest, should_return_x_minus_1_given_command_is_M_and_facing_is_W)
@@ -49,7 +49,7 @@ TEST(ExecutorTest, should_return_x_minus_1_given_command_is_M_and_facing_is_W)
     executor->Execute("M");
     // then
     const Pose target({-1, 0, 'W'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(ExecutorTest, should_return_y_plus_1_given_command_is_M_and_facing_is_N)
@@ -60,7 +60,7 @@ TEST(ExecutorTest, should_return_y_plus_1_given_command_is_M_and_facing_is_N)
     executor->Execute("M");
     // then
     const Pose target({0, 1, 'N'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(ExecutorTest, should_return_y_minus_1_given_command_is_M_and_facing_is_S)
@@ -71,7 +71,7 @@ TEST(ExecutorTest, should_return_y_minus_1_given_command_is_M_and_facing_is_S)
     executor->Execute("M");
     // then
     const Pose target({0, -1, 'S'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(ExecutorTest, should_return_facing_N_given_command_is_L_and_facing_is_E)
@@ -82,7 +82,7 @@ TEST(ExecutorTest, should_return_facing_N_given_command_is_L_and_facing_is_E)
     executor->Execute("L");
     // then
     const Pose target({0, 0, 'N'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(ExecutorTest, should_return_facing_S_given_command_is_L_and_facing_is_W)
@@ -93,7 +93,7 @@ TEST(ExecutorTest, should_return_facing_S_given_command_is_L_and_facing_is_W)
     executor->Execute("L");
     // then
     const Pose target({0, 0, 'S'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(ExecutorTest, should_return_facing_W_given_command_is_L_and_facing_is_N)
@@ -104,7 +104,7 @@ TEST(ExecutorTest, should_return_facing_W_given_command_is_L_and_facing_is_N)
     executor->Execute("L");
     // then
     const Pose target({0, 0, 'W'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(ExecutorTest, should_return_facing_E_given_command_is_L_and_facing_is_S)
@@ -115,7 +115,7 @@ TEST(ExecutorTest, should_return_facing_E_given_command_is_L_and_facing_is_S)
     executor->Execute("L");
     // then
     const Pose target({0, 0, 'E'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(ExecutorTest, should_return_facing_E_given_command_is_R_and_facing_is_N)
@@ -126,7 +126,7 @@ TEST(ExecutorTest, should_return_facing_E_given_command_is_R_and_facing_is_N)
     executor->Execute("R");
     // then
     const Pose target({0, 0, 'E'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(ExecutorTest, should_return_facing_W_given_command_is_R_and_facing_is_S)
@@ -137,7 +137,7 @@ TEST(ExecutorTest, should_return_facing_W_given_command_is_R_and_facing_is_S)
     executor->Execute("R");
     // then
     const Pose target({0, 0, 'W'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(ExecutorTest, should_return_facing_S_given_command_is_R_and_facing_is_E)
@@ -148,7 +148,7 @@ TEST(ExecutorTest, should_return_facing_S_given_command_is_R_and_facing_is_E)
     executor->Execute("R");
     // then
     const Pose target({0, 0, 'S'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(ExecutorTest, should_return_facing_N_given_command_is_R_and_facing_is_W)
@@ -159,6 +159,6 @@ TEST(ExecutorTest, should_return_facing_N_given_command_is_R_and_facing_is_W)
     executor->Execute("R");
     // then
     const Pose target({0, 0, 'N'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 }  // namespace adas

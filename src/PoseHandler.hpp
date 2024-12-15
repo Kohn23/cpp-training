@@ -6,7 +6,7 @@ namespace adas
 class PoseHandler final
 {
 public:
-    PoseHandler(const Pose& pose) noexcept;
+    PoseHandler(const Pose& pose, const char factory) noexcept;
     PoseHandler(const PoseHandler&) = delete;
     PoseHandler& operator=(const PoseHandler&) = delete;
 
@@ -19,11 +19,16 @@ public:
     bool IsFast(void) const noexcept;
     void Back(void) noexcept;
     bool IsBackward(void) const noexcept;
-    Pose Query(void) const noexcept;
+    Pose QueryHead(void) const noexcept;
+    Pose QueryTail(void) const noexcept;
 
 private:
-    Point point;
+    void setTail(void) noexcept;
+private:
+    Point head;
+    Point tail;
     const Direction* facing;
+    char factory;
     bool fast{false};
     bool backward{false};
 };

@@ -16,7 +16,7 @@ TEST(SportsCarTest, should_return_x_plus_2_given_command_is_M_and_facing_is_E)
     executor->Execute("M");
     // then
     const Pose target({2, 0, 'E'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarTest, should_return_x_minus_2_given_command_is_M_and_facing_is_W)
@@ -27,7 +27,7 @@ TEST(SportsCarTest, should_return_x_minus_2_given_command_is_M_and_facing_is_W)
     executor->Execute("M");
     // then
     const Pose target({-2, 0, 'W'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarTest, should_return_y_plus_2_given_command_is_M_and_facing_is_N)
@@ -38,7 +38,7 @@ TEST(SportsCarTest, should_return_y_plus_2_given_command_is_M_and_facing_is_N)
     executor->Execute("M");
     // then
     const Pose target({0, 2, 'N'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarTest, should_return_y_minus_2_given_command_is_M_and_facing_is_S)
@@ -49,7 +49,7 @@ TEST(SportsCarTest, should_return_y_minus_2_given_command_is_M_and_facing_is_S)
     executor->Execute("M");
     // then
     const Pose target({0, -2, 'S'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarTest, should_return_facing_N_and_y_plus_1_given_command_is_L_and_facing_is_E)
@@ -60,7 +60,7 @@ TEST(SportsCarTest, should_return_facing_N_and_y_plus_1_given_command_is_L_and_f
     executor->Execute("L");
     // then
     const Pose target({0, 1, 'N'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarTest, should_return_facing_S_and_y_minus_1_given_command_is_L_and_facing_is_W)
@@ -71,7 +71,7 @@ TEST(SportsCarTest, should_return_facing_S_and_y_minus_1_given_command_is_L_and_
     executor->Execute("L");
     // then
     const Pose target({0, -1, 'S'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarTest, should_return_facing_W_and_x_minus_1_given_command_is_L_and_facing_is_N)
@@ -82,7 +82,7 @@ TEST(SportsCarTest, should_return_facing_W_and_x_minus_1_given_command_is_L_and_
     executor->Execute("L");
     // then
     const Pose target({-1, 0, 'W'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarTest, should_return_facing_E_and_x_plus_1_given_command_is_L_and_facing_is_S)
@@ -93,7 +93,7 @@ TEST(SportsCarTest, should_return_facing_E_and_x_plus_1_given_command_is_L_and_f
     executor->Execute("L");
     // then
     const Pose target({1, 0, 'E'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarTest, should_return_facing_E_and_x_plus_1_given_command_is_R_and_facing_is_N)
@@ -104,7 +104,7 @@ TEST(SportsCarTest, should_return_facing_E_and_x_plus_1_given_command_is_R_and_f
     executor->Execute("R");
     // then
     const Pose target({1, 0, 'E'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarTest, should_return_facing_W_and_x_minus_1_given_command_is_R_and_facing_is_S)
@@ -115,7 +115,7 @@ TEST(SportsCarTest, should_return_facing_W_and_x_minus_1_given_command_is_R_and_
     executor->Execute("R");
     // then
     const Pose target({-1, 0, 'W'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarTest, should_return_facing_S_and_y_minus_1_given_command_is_R_and_facing_is_E)
@@ -126,7 +126,7 @@ TEST(SportsCarTest, should_return_facing_S_and_y_minus_1_given_command_is_R_and_
     executor->Execute("R");
     // then
     const Pose target({0, -1, 'S'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarTest, should_return_facing_N_and_y_plus_1_given_command_is_R_and_facing_is_W)
@@ -137,7 +137,7 @@ TEST(SportsCarTest, should_return_facing_N_and_y_plus_1_given_command_is_R_and_f
     executor->Execute("R");
     // then
     const Pose target({0, 1, 'N'});
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarFastTest, should_return_x_plus_4_given_status_is_fast_command_is_M_and_facing_is_E)
@@ -148,7 +148,7 @@ TEST(SportsCarFastTest, should_return_x_plus_4_given_status_is_fast_command_is_M
     executor->Execute("FM");
     // then
     const Pose target{4, 0, 'E'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarFastTest, should_return_N_and_x_plus_1_and_y_plus_1_given_status_is_fast_command_is_L_and_facing_is_E)
@@ -159,7 +159,7 @@ TEST(SportsCarFastTest, should_return_N_and_x_plus_1_and_y_plus_1_given_status_i
     executor->Execute("FL");
     // then
     const Pose target{1, 1, 'N'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarFastTest, should_return_S_and_x_plus_1_and_y_minus_1_given_status_is_fast_given_command_is_R_and_facing_is_E)
@@ -170,7 +170,7 @@ TEST(SportsCarFastTest, should_return_S_and_x_plus_1_and_y_minus_1_given_status_
     executor->Execute("FR");
     // then
     const Pose target{1, -1, 'S'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarFastTest, should_return_y_plus_2_given_command_is_FFM_and_facing_is_N)
@@ -181,7 +181,7 @@ TEST(SportsCarFastTest, should_return_y_plus_2_given_command_is_FFM_and_facing_i
     executor->Execute("FFM");
     // then
     const Pose target{0, 2, 'N'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarBackTest, should_return_y_minus_2_given_status_is_backward_command_is_M_and_facing_is_N)
@@ -192,7 +192,7 @@ TEST(SportsCarBackTest, should_return_y_minus_2_given_status_is_backward_command
     executor->Execute("BM");
     // then
     const Pose target{0, -2, 'N'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarBackTest, should_return_S_and_y_plus_1_given_status_is_backward_command_is_L_and_facing_is_E)
@@ -203,7 +203,7 @@ TEST(SportsCarBackTest, should_return_S_and_y_plus_1_given_status_is_backward_co
     executor->Execute("BL");
     // then
     const Pose target{0, 1, 'S'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarBackTest, should_return_N_and_y_minus_1_given_status_is_backward_command_is_R_and_facing_is_E)
@@ -214,7 +214,7 @@ TEST(SportsCarBackTest, should_return_N_and_y_minus_1_given_status_is_backward_c
     executor->Execute("BR");
     // then
     const Pose target{0, -1, 'N'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarBackTest, should_return_x_minus_4_given_status_is_fast_and_backward_command_is_M_and_facing_is_E)
@@ -225,7 +225,7 @@ TEST(SportsCarBackTest, should_return_x_minus_4_given_status_is_fast_and_backwar
     executor->Execute("BFM");
     // then
     const Pose target{-4, 0, 'E'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarBackTest, should_return_S_and_x_minus_1_and_y_plus_1_given_status_is_fast_and_backward_command_is_L_and_facing_is_E)
@@ -236,7 +236,7 @@ TEST(SportsCarBackTest, should_return_S_and_x_minus_1_and_y_plus_1_given_status_
     executor->Execute("BFL");
     // then
     const Pose target{-1, 1, 'S'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarBackTest, should_return_N_and_x_minus_1_and_y_minus_1_given_status_is_fast_and_backward_command_is_R_and_facing_is_E)
@@ -247,7 +247,7 @@ TEST(SportsCarBackTest, should_return_N_and_x_minus_1_and_y_minus_1_given_status
     executor->Execute("BFR");
     // then
     const Pose target{-1, -1, 'N'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 TEST(SportsCarBackTest, should_return_y_plus_2_given_command_is_BBM_and_facing_is_N)
@@ -258,7 +258,7 @@ TEST(SportsCarBackTest, should_return_y_plus_2_given_command_is_BBM_and_facing_i
     executor->Execute("BBM");
     // then
     const Pose target{0, 2, 'N'};
-    ASSERT_EQ(target, executor->Query());
+    ASSERT_EQ(target, executor->QueryHead());
 }
 
 }  // namespace adas

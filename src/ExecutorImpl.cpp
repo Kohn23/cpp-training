@@ -13,7 +13,7 @@ Executor* Executor::NewExecutor(const Pose& pose, const char factory) noexcept
 }
 
 ExecutorImpl::ExecutorImpl(const Pose& pose, const char factory) noexcept
-    : poseHandler(pose), cmderFactory(FactorySubject().GetFactory(factory))
+    : poseHandler(pose, factory), cmderFactory(FactorySubject().GetFactory(factory))
 {
 }
 
@@ -23,9 +23,14 @@ void ExecutorImpl::Execute(const std::string& commands) noexcept
     std::for_each(cmders.begin(), cmders.end(), [this](const Cmder& cmder) noexcept { cmder(poseHandler).DoOperate(poseHandler); });
 }
 
-Pose ExecutorImpl::Query() const noexcept
+Pose ExecutorImpl::QueryHead() const noexcept
 {
-    return poseHandler.Query();
+    return poseHandler.QueryHead();
+}
+
+Pose ExecutorImpl::QueryTail() const noexcept
+{
+    return poseHandler.QueryTail();
 }
 
 }  // namespace adas

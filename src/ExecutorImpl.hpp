@@ -16,7 +16,8 @@ public:
 
 public:
     void Execute(const std::string& command) noexcept override;
-    Pose Query(void) const noexcept override;
+    Pose QueryHead(void) const noexcept override;
+    Pose QueryTail(void) const noexcept override;
 
 private:
     PoseHandler poseHandler;

@@ -1,29 +1,34 @@
 #include "PoseHandler.hpp"
 namespace adas
 {
-PoseHandler::PoseHandler(const Pose& pose) noexcept
-    : point(pose.x, pose.y), facing(&Direction::GetDirection(pose.heading))
+PoseHandler::PoseHandler(const Pose& pose, const char factory) noexcept
+    : head(pose.x, pose.y), tail(0,0), facing(&Direction::GetDirection(pose.heading)), factory(factory)
 {
+    setTail();
 }
 
 void PoseHandler::Forward() noexcept
 {
-    point += facing->Move();
+    head += facing->Move();
+    setTail();
 }
 
 void PoseHandler::Backward() noexcept
 {
-    point -= facing->Move();
+    head -= facing->Move();
+    setTail();
 }
 
 void PoseHandler::TurnLeft() noexcept
 {
     facing = &(facing->LeftOne());
+    setTail();
 }
 
 void PoseHandler::TurnRight() noexcept
 {
     facing = &(facing->RightOne());
+    setTail();
 }
 
 void PoseHandler::Fast() noexcept
@@ -46,9 +51,26 @@ bool PoseHandler::IsBackward() const noexcept
     return backward;
 }
 
-Pose PoseHandler::Query() const noexcept
+Pose PoseHandler::QueryHead() const noexcept
 {
-    return {point.GetX(), point.GetY(), facing->GetHeading()};
+    return {head.GetX(), head.GetY(), facing->GetHeading()};
+}
+
+Pose PoseHandler::QueryTail() const noexcept
+{
+    return {tail.GetX(), tail.GetY(), facing->GetHeading()};
+}
+
+void PoseHandler::setTail() noexcept
+{
+    if(factory != 'B')
+    {
+        tail = head;
+    }
+    else
+    {
+        tail = head - facing->Move();
+    }
 }
 
 }  // namespace adas

@@ -31,6 +31,13 @@ Point& Point::operator-=(const Point& rhs) noexcept
     return *this;
 }
 
+Point Point::operator-(const Point& rhs) const noexcept
+{
+    Point tmp(*this);
+    tmp -= rhs;
+    return tmp;
+}
+
 int Point::GetX(void) const noexcept
 {
     return x;

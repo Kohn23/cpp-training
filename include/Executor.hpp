@@ -22,6 +22,7 @@ namespace adas
 
     public:
         virtual void Execute(const std::string& command) noexcept = 0;
-        virtual Pose Query(void) const noexcept = 0;
+        virtual Pose QueryHead(void) const noexcept = 0;
+        virtual Pose QueryTail(void) const noexcept = 0;
     };
 }
