@@ -12,7 +12,8 @@ namespace adas
     {
     public:
     // Caller should delete *executor when it is no longer needed.
-        static Executor* NewExecutor(const Pose& pose = {0, 0, 'N'}) noexcept;
+        static Executor* NewExecutor(const Pose& pose = {0, 0, 'N'}, const char factory = 'C') noexcept;
+
     public:
         Executor(void) = default;
         virtual ~Executor(void) = default;

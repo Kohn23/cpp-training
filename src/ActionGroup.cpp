@@ -90,6 +90,7 @@ void ActionGroup::DoOperate(PoseHandler& poseHandler) const noexcept
         ForwardAction(), BackwardAction(), TurnLeftAction(), BackwardTurnLeftAction(), 
         TurnRightAction(), BackwardTurnRightAction(), BeFastAction(), BeBackwardAction() };
     
-    std::for_each(actions.begin(), actions.end(), [&poseHandler](const ActionType actionType) mutable noexcept {actionVec[static_cast<uint16_t>(actionType)](poseHandler);});
+    std::for_each(actions.begin(), actions.end(), 
+        [&poseHandler](const ActionType actionType) mutable noexcept {actionVec[static_cast<uint16_t>(actionType)](poseHandler);});
 }
 }

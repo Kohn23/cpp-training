@@ -8,7 +8,7 @@ ActionGroup MoveCommand::operator()(PoseHandler& poseHandler) const noexcept{
     ActionGroup actionGroup;
     const auto moveAction = 
         poseHandler.IsBackward() ? ActionType::BACKWARD_1_STEP_ACTION : ActionType::FORWARD_1_STEP_ACTION;
-    
+    // 组合原子指令
     if (poseHandler.IsFast()) {
         actionGroup.PushAction(moveAction);
     }
@@ -23,7 +23,7 @@ ActionGroup TurnLeftCommand::operator()(PoseHandler& poseHandler) const noexcept
             poseHandler.IsBackward() ? ActionType::BACKWARD_TURNLEFT_ACTION : ActionType::TURNLEFT_ACTION;
         const auto moveAction =
             poseHandler.IsBackward() ? ActionType::BACKWARD_1_STEP_ACTION : ActionType::FORWARD_1_STEP_ACTION;
-        
+        // 组合原子指令
         if (poseHandler.IsFast()) {
             actionGroup.PushAction(moveAction);
         }
@@ -39,6 +39,7 @@ ActionGroup TurnRightCommand::operator()(PoseHandler& poseHandler) const noexcep
             poseHandler.IsBackward() ? ActionType::BACKWARD_TURNRIGHT_ACTION : ActionType::TURNRIGHT_ACTION;
         const auto moveAction =
             poseHandler.IsBackward() ? ActionType::BACKWARD_1_STEP_ACTION : ActionType::FORWARD_1_STEP_ACTION;
+        // 组合原子指令    
         if (poseHandler.IsFast()) {
             actionGroup.PushAction(moveAction);
         }

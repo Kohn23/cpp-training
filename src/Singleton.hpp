@@ -6,10 +6,10 @@ namespace adas
     class Singleton final
     {
     public:
-        static T* Instance(void) noexcept
+        static T& Instance(void) noexcept
         {
             static T instance;
-            return &instance;
+            return instance;
         }
         Singleton(const Singleton&) noexcept = delete;
         Singleton& operator=(const Singleton&) noexcept = delete;

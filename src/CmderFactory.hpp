@@ -22,8 +22,8 @@ public:
     virtual CmderList GetCmders(const std::string& commands) const noexcept = 0;
 };
 
-// 实体工厂
-class CarFactory final: public CmderFactory
+// Car工厂
+class CarFactory final : public CmderFactory
 {
 public:
     CarFactory(void) = default;
@@ -41,6 +41,42 @@ private:
     };
 };
 
+// SportsCar工厂
+class SportsCarFactory final : public CmderFactory
+{
+public:
+    SportsCarFactory(void) = default;
+    ~SportsCarFactory(void) noexcept = default;
+    SportsCarFactory(const CmderFactory&) noexcept = delete;
+    SportsCarFactory& operator=(const CmderFactory&) noexcept = delete;
 
+public:
+    CmderList GetCmders(const std::string& commands) const noexcept override;
+
+private:
+    const std::unordered_map<char, Cmder> cmderMap{
+        {'M', sportsCar::MoveCommand()}, {'L', sportsCar::TurnLeftCommand()}, {'R', sportsCar::TurnRightCommand()},
+        {'F', sportsCar::FastCommand()}, {'B', sportsCar::BackCommand()},
+    };
+};
+
+// Bus工厂
+class BusFactory final : public CmderFactory
+{
+public:
+    BusFactory(void) = default;
+    ~BusFactory(void) noexcept = default;
+    BusFactory(const CmderFactory&) noexcept = delete;
+    BusFactory& operator=(const CmderFactory&) noexcept = delete;
+
+public:
+    CmderList GetCmders(const std::string& commands) const noexcept override;
+
+private:
+    const std::unordered_map<char, Cmder> cmderMap{
+        {'M', bus::MoveCommand()}, {'L', bus::TurnLeftCommand()}, {'R', bus::TurnRightCommand()},
+        {'F', bus::FastCommand()}, {'B', bus::BackCommand()},
+    };
+};
 
 }  // namespace adas
