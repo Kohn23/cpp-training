@@ -22,10 +22,11 @@ public:
     virtual CmderList GetCmders(const std::string& commands) const noexcept = 0;
 };
 
+// 实体工厂
 class CarFactory final: public CmderFactory
 {
 public:
-    CarFactory(void) = default;  // 这里noexcept会导致编译失败，原因是与constexpr构造函数冲突
+    CarFactory(void) = default;
     ~CarFactory(void) noexcept = default;
     CarFactory(const CmderFactory&) noexcept = delete;
     CarFactory& operator=(const CmderFactory&) noexcept = delete;
@@ -35,8 +36,11 @@ public:
 
 private:
     const std::unordered_map<char, Cmder> cmderMap{
-        {'M', MoveCommand()}, {'L', TurnLeftCommand()}, {'R', TurnRightCommand()},
-        {'F', FastCommand()}, {'B', BackCommand()},
+        {'M', car::MoveCommand()}, {'L', car::TurnLeftCommand()}, {'R', car::TurnRightCommand()},
+        {'F', car::FastCommand()}, {'B', car::BackCommand()},
     };
 };
+
+
+
 }  // namespace adas
